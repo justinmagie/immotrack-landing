@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>ImmoTrack — Gérez vos immeubles sérieusement</title>
+<meta name="description" content="Scanner de factures, loyers, tenue de livres T776, rapport NOI. Conçu pour les propriétaires québécois. 25$/mois."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bk:#000;--s1:#070707;--s2:#0E0E0E;--s3:#151515;
+  --br:#1A1A1A;--br2:#252525;
+  --am:#E09B2D;--am2:#C88020;--am3:#F5B040;
+  --gn:#1DB954;--rd:#E5484D;--bl:#3B82F6;
+  --t1:#FFFFFF;--t2:#A8A8A8;--t3:#505050;--t4:#252525;
+  --mono:'JetBrains Mono',monospace;
+  --ui:'Inter',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bk);color:var(--t1);font-family:var(--ui);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  height:52px;display:flex;align-items:stretch;
+  background:rgba(0,0,0,.96);border-bottom:1px solid var(--br);
+  backdrop-filter:blur(16px);
+}
+.n-logo{display:flex;align-items:center;gap:10px;padding:0 24px;border-right:1px solid var(--br)}
+.n-mark{width:28px;height:28px;background:var(--am);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;font-weight:700;color:#000;flex-shrink:0}
+.n-name{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+.n-links{display:flex;align-items:stretch}
+.n-links a{display:flex;align-items:center;padding:0 18px;font-size:11px;color:var(--t3);letter-spacing:.06em;border-right:1px solid var(--br);transition:color .1s}
+.n-links a:hover{color:var(--t1)}
+.n-cta{display:flex;align-items:center;margin-left:auto;padding:0 22px;background:var(--am);color:#000;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;transition:background .1s;flex-shrink:0}
+.n-cta:hover{background:var(--am3)}
+
+/* ── HERO ── */
+.hero{
+  min-height:calc(100vh - 52px);
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;
+  max-width:1200px;margin:0 auto;
+  padding:80px 40px;gap:80px;
+}
+.h-eye{
+  font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--t3);margin-bottom:20px;
+  display:flex;align-items:center;gap:10px;
+}
+.h-eye::before{content:'';width:24px;height:1px;background:var(--am);flex-shrink:0}
+.h-title{
+  font-size:clamp(38px,5.5vw,66px);
+  font-weight:900;line-height:1.0;
+  letter-spacing:-.04em;
+  margin-bottom:28px;
+}
+.h-title .line2{
+  display:block;
+  background:linear-gradient(90deg,var(--am),var(--am3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.h-title .line3{
+  display:block;color:var(--t1);
+}
+.h-body{
+  font-size:16px;color:var(--t2);line-height:1.75;
+  margin-bottom:40px;max-width:480px;
+}
+.h-body strong{color:var(--t1);font-weight:600}
+.h-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:28px}
+.btn-am{
+  background:var(--am);color:#000;
+  padding:14px 28px;font-size:12px;font-weight:800;
+  letter-spacing:.08em;text-transform:uppercase;
+  transition:background .1s;display:inline-block;
+  white-space:nowrap;
+}
+.btn-am:hover{background:var(--am3)}
+.btn-line{
+  border:1px solid var(--br2);color:var(--t2);
+  padding:14px 24px;font-size:12px;font-weight:500;
+  letter-spacing:.06em;transition:all .1s;
+  display:inline-block;white-space:nowrap;
+}
+.btn-line:hover{border-color:var(--t3);color:var(--t1)}
+.h-trust{display:flex;gap:20px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--t3)}
+.trust-icon{color:var(--gn);font-size:11px}
+
+/* Hero visual — app mockup */
+.h-visual{position:relative}
+.app-window{
+  background:var(--s1);border:1px solid var(--br);
+  overflow:hidden;
+  box-shadow:0 32px 80px rgba(0,0,0,.7),0 0 0 1px var(--br);
+}
+.aw-bar{
+  background:var(--bk);border-bottom:1px solid var(--br);
+  height:42px;display:flex;align-items:stretch;
+}
+.aw-logo{display:flex;align-items:center;gap:8px;padding:0 14px;border-right:1px solid var(--br)}
+.aw-logo-m{width:20px;height:20px;background:var(--am);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;font-weight:700;color:#000}
+.aw-logo-n{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--t1)}
+.aw-tab{display:flex;align-items:center;padding:0 12px;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);border-bottom:2px solid transparent}
+.aw-tab.on{color:var(--am);border-bottom-color:var(--am);background:rgba(224,155,45,.03)}
+.aw-live{display:flex;align-items:center;gap:5px;margin-left:auto;padding:0 14px;font-family:var(--mono);font-size:9px;color:var(--gn);letter-spacing:.1em}
+.live-dot{width:5px;height:5px;background:var(--gn);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+.aw-ticker{display:flex;background:var(--s2);border-bottom:1px solid var(--br);overflow:hidden}
+.tk{display:flex;gap:6px;align-items:center;padding:5px 12px;border-right:1px solid var(--br);white-space:nowrap}
+.tk-l{font-family:var(--mono);font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.1em}
+.tk-v{font-family:var(--mono);font-size:11px;color:var(--t1);font-weight:600}
+
+.aw-body{padding:16px}
+.aw-kpis{display:grid;grid-template-columns:5fr 3fr 3fr;gap:1px;background:var(--br);margin-bottom:1px}
+.kp{background:var(--s1);padding:14px 12px}
+.kp-l{font-family:var(--mono);font-size:7px;color:var(--t3);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}
+.kp-v{font-family:var(--mono);font-weight:600;letter-spacing:-.04em;line-height:1;margin-bottom:5px}
+.kp-s{font-family:var(--mono);font-size:9px;color:var(--t3)}
+
+.aw-chart{background:var(--s2);border:1px solid var(--br);padding:12px;margin-bottom:1px}
+.ch-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.ch-title{font-family:var(--mono);font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.1em}
+.ch-leg{display:flex;gap:12px}
+.leg{display:flex;align-items:center;gap:4px;font-family:var(--mono);font-size:8px;color:var(--t3)}
+.leg-bar{width:10px;height:3px}
+.ch-bars{display:flex;gap:5px;align-items:flex-end;height:52px}
+.cb{flex:1;display:flex;flex-direction:column;align-items:center}
+.cb-pair{display:flex;gap:2px;align-items:flex-end;width:100%;height:44px}
+.bar{flex:1;border-radius:1px 1px 0 0;min-height:2px}
+.cb-lbl{font-family:var(--mono);font-size:7px;margin-top:3px;text-align:center;width:100%}
+
+.aw-alert{background:var(--s1);border-left:2px solid var(--rd);padding:10px 12px;margin-bottom:1px}
+.al-head{font-family:var(--mono);font-size:8px;color:var(--rd);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;display:flex;align-items:center;gap:5px}
+.al-dot{width:4px;height:4px;background:var(--rd);border-radius:50%;animation:blink 1s infinite}
+.al-row{display:flex;justify-content:space-between;align-items:center}
+.al-name{font-size:11px;font-weight:600}
+.al-sub{font-size:9px;color:var(--t3);font-family:var(--mono);margin-top:1px}
+.tag{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border:1px solid}
+.tag-rd{color:var(--rd);border-color:#3A0808}
+.tag-am{color:var(--am);border-color:#3A2000}
+.tag-gn{color:var(--gn);border-color:#0A2810}
+.tag-bl{color:var(--bl);border-color:#0A1A3A}
+
+.aw-2col{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--br)}
+.aw-panel{background:var(--s1);padding:12px}
+.ap-head{font-family:var(--mono);font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.ap-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid var(--br)}
+.ap-row:first-of-type{border-top:none}
+.ar-name{font-size:11px;font-weight:500}
+.ar-sub{font-size:9px;color:var(--t3);font-family:var(--mono);margin-top:1px}
+
+/* floating label on visual */
+.h-float{
+  position:absolute;right:-20px;bottom:80px;
+  background:var(--s2);border:1px solid var(--br2);
+  padding:12px 14px;
+  display:flex;align-items:center;gap:10px;
+  box-shadow:0 8px 24px rgba(0,0,0,.6);
+  animation:floatup 3s ease-in-out infinite;
+}
+@keyframes floatup{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.fl-icon{font-size:18px}
+.fl-text strong{display:block;font-size:12px;font-weight:700}
+.fl-text span{font-size:10px;color:var(--t3);font-family:var(--mono)}
+
+/* ── PAIN ── */
+.pain{
+  background:var(--s1);
+  border-top:1px solid var(--br);border-bottom:1px solid var(--br);
+  padding:80px 40px;
+}
+.pain-inner{max-width:1200px;margin:0 auto}
+.pain-head{
+  text-align:center;margin-bottom:48px;
+}
+.pain-head h2{font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.pain-head p{font-size:16px;color:var(--t2);margin-top:12px}
+.pain-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--br);border:1px solid var(--br)}
+.pain-card{background:var(--bk);padding:28px 24px}
+.pc-before{
+  font-family:var(--mono);font-size:9px;color:var(--rd);
+  letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:14px;display:flex;align-items:center;gap:8px;
+}
+.pc-before::before{content:'';width:14px;height:1px;background:var(--rd)}
+.pc-scene{font-size:14px;color:var(--t1);font-weight:600;margin-bottom:10px;line-height:1.4}
+.pc-pain{font-size:13px;color:var(--t2);line-height:1.65;font-style:italic}
+.pc-arrow{
+  font-family:var(--mono);font-size:9px;color:var(--gn);
+  letter-spacing:.12em;text-transform:uppercase;
+  margin-top:16px;margin-bottom:10px;display:flex;align-items:center;gap:8px;
+}
+.pc-arrow::before{content:'';width:14px;height:1px;background:var(--gn)}
+.pc-solve{font-size:13px;color:var(--gn);font-weight:600;line-height:1.5}
+
+/* ── FEATURES ── */
+.feats{padding:80px 40px}
+.feats-inner{max-width:1200px;margin:0 auto}
+.s-eye{font-family:var(--mono);font-size:10px;color:var(--am);letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px}
+.s-h{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:48px}
+.s-h em{color:var(--t3);font-style:normal}
+.feats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--br);border:1px solid var(--br)}
+.feat{background:var(--bk);padding:30px 26px;transition:background .12s}
+.feat:hover{background:var(--s2)}
+.feat-tag{
+  font-family:var(--mono);font-size:9px;color:var(--am);
+  letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:16px;display:flex;align-items:center;gap:8px;
+}
+.feat-tag::before{content:'';width:16px;height:1px;background:var(--am);flex-shrink:0}
+.feat-h{font-size:16px;font-weight:700;margin-bottom:10px;letter-spacing:-.01em}
+.feat-p{font-size:13px;color:var(--t2);line-height:1.7}
+.feat-p strong{color:var(--t1);font-weight:600}
+
+/* ── QUEBEC ── */
+.qc{padding:80px 40px;background:var(--s1);border-top:1px solid var(--br);border-bottom:1px solid var(--br)}
+.qc-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:start}
+.qc-left h2{font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:16px}
+.qc-left p{font-size:15px;color:var(--t2);line-height:1.7}
+.qc-list{list-style:none}
+.qc-item{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--br);align-items:flex-start}
+.qc-item:first-child{border-top:1px solid var(--br)}
+.qci-arrow{color:var(--am);font-family:var(--mono);font-size:12px;flex-shrink:0;margin-top:1px}
+.qci-h{font-size:14px;font-weight:700;margin-bottom:4px}
+.qci-p{font-size:12px;color:var(--t2);line-height:1.65}
+
+/* ── NUMBERS ── */
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--br);border:1px solid var(--br);max-width:1200px;margin:0 auto}
+.num{background:var(--bk);padding:32px 28px}
+.num-v{font-family:var(--mono);font-size:44px;font-weight:600;letter-spacing:-.04em;color:var(--am);line-height:1;margin-bottom:8px}
+.num-l{font-size:13px;color:var(--t2)}
+
+/* ── PRICING ── */
+.pricing{padding:80px 40px}
+.pricing-inner{max-width:1200px;margin:0 auto}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--br);border:1px solid var(--br)}
+.pc{background:var(--bk);padding:40px 32px;position:relative}
+.pc.hot{background:var(--s2)}
+.hot-tag{
+  position:absolute;top:-1px;left:32px;
+  background:var(--am);color:#000;
+  font-family:var(--mono);font-size:8px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:4px 10px;
+}
+.pc-plan{font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px}
+.pc-price{font-family:var(--mono);font-size:52px;font-weight:600;letter-spacing:-.04em;line-height:1;margin-bottom:4px}
+.pc-per{font-size:14px;color:var(--t3);font-weight:400}
+.pc-note{font-size:12px;color:var(--t4);margin-bottom:32px;margin-top:6px}
+.pc-feats{list-style:none;margin-bottom:36px}
+.pc-feats li{font-size:13px;color:var(--t2);padding:8px 0;border-bottom:1px solid var(--br);display:flex;align-items:center;gap:8px}
+.pc-feats li.y::before{content:'✓';color:var(--gn);font-family:var(--mono);font-size:10px;flex-shrink:0}
+.pc-feats li.n{color:var(--t4)}
+.pc-feats li.n::before{content:'—';color:var(--t4);font-family:var(--mono);font-size:10px;flex-shrink:0}
+.pc-btn-am{background:var(--am);color:#000;display:block;text-align:center;padding:14px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;transition:background .1s}
+.pc-btn-am:hover{background:var(--am3)}
+.pc-btn-ln{border:1px solid var(--br2);color:var(--t2);display:block;text-align:center;padding:14px;font-size:12px;font-weight:500;letter-spacing:.06em;transition:all .1s}
+.pc-btn-ln:hover{border-color:var(--t3);color:var(--t1)}
+
+/* ── FINAL CTA ── */
+.final{
+  padding:100px 40px;text-align:center;
+  background:var(--s1);
+  border-top:1px solid var(--br);
+}
+.final h2{font-size:clamp(32px,5vw,60px);font-weight:900;letter-spacing:-.04em;line-height:1.05;margin-bottom:20px}
+.final h2 span{
+  background:linear-gradient(90deg,var(--am),var(--am3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.final p{font-size:17px;color:var(--t2);margin-bottom:44px;line-height:1.6}
+
+/* ── FOOTER ── */
+footer{
+  padding:28px 40px;border-top:1px solid var(--br);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+}
+.f-copy{font-size:12px;color:var(--t4)}
+.f-links{display:flex;gap:24px}
+.f-links a{font-size:12px;color:var(--t3);transition:color .1s}
+.f-links a:hover{color:var(--t1)}
+
+/* ── DIVIDER ── */
+hr{border:none;border-top:1px solid var(--br)}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;gap:48px;padding:60px 20px;min-height:auto}
+  .h-visual{display:none}
+  .pain,.feats,.qc,.pricing{padding:60px 20px}
+  .pain-cards,.feats-grid,.pricing-grid{grid-template-columns:1fr}
+  .qc-inner{grid-template-columns:1fr;gap:40px}
+  .nums{grid-template-columns:1fr 1fr}
+  .n-links{display:none}
+  footer{padding:20px}
+}
+@media(max-width:500px){
+  .nums{grid-template-columns:1fr 1fr}
+  .n-cta{font-size:10px;padding:0 14px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="n-logo">
+    <div class="n-mark">IT</div>
+    <span class="n-name">ImmoTrack</span>
+  </div>
+  <div class="n-links">
+    <a href="#pain">Le problème</a>
+    <a href="#feats">Fonctionnalités</a>
+    <a href="#prix">Tarifs</a>
+  </div>
+  <a href="https://immotrack-pearl.vercel.app" class="n-cta">Essai gratuit — 14 jours</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="h-eye">Pour les propriétaires québécois</div>
+    <h1 class="h-title">
+      Vos immeubles<br/>
+      <span class="line2">méritent mieux</span>
+      <span class="line3">qu'un Excel.</span>
+    </h1>
+    <p class="h-body">
+      Scanner de factures avec <strong>lecture automatique TPS/TVQ</strong>, tenue de livres <strong>T776 prête pour votre comptable</strong>, rappels de loyers automatiques, rapport de vente avec NOI. Tout au même endroit.
+    </p>
+    <div class="h-actions">
+      <a href="https://immotrack-pearl.vercel.app" class="btn-am">Essayer gratuitement — 14 jours</a>
+      <a href="#pain" class="btn-line">Voir comment ça marche</a>
+    </div>
+    <div class="h-trust">
+      <div class="trust-item"><span class="trust-icon">✓</span> Aucune carte requise</div>
+      <div class="trust-item"><span class="trust-icon">✓</span> 25$/mois après l'essai</div>
+      <div class="trust-item"><span class="trust-icon">✓</span> Annulable en tout temps</div>
+    </div>
+  </div>
+
+  <!-- App mockup -->
+  <div class="h-visual">
+    <div class="app-window">
+      <div class="aw-bar">
+        <div class="aw-logo">
+          <div class="aw-logo-m">IT</div>
+          <span class="aw-logo-n">Immotrack</span>
+        </div>
+        <div class="aw-tab on" style="margin-left:8px">Aperçu</div>
+        <div class="aw-tab">Loyers</div>
+        <div class="aw-tab">Dépenses</div>
+        <div class="aw-live"><div class="live-dot"></div>LIVE</div>
+      </div>
+      <div class="aw-ticker">
+        <div class="tk"><span class="tk-l">Taux BdC</span><span class="tk-v">2.25%</span></div>
+        <div class="tk"><span class="tk-l">CMB 3 ans</span><span class="tk-v">4.45%</span></div>
+        <div class="tk"><span class="tk-l">USD/CAD</span><span class="tk-v">1.3612</span></div>
+        <div class="tk"><span class="tk-l">BdC 07-30</span><span class="tk-v" style="color:var(--am)">J-33</span></div>
+      </div>
+      <div class="aw-body">
+        <div class="aw-kpis">
+          <div class="kp" style="border-left:2px solid var(--gn)">
+            <div class="kp-l">NOI 2026</div>
+            <div class="kp-v" style="font-size:30px;color:var(--gn)">34 120 $</div>
+            <div style="display:flex;gap:14px;margin-top:5px">
+              <span style="font-family:var(--mono);font-size:9px;color:var(--t3)">Rev. <span style="color:var(--gn)">46 320 $</span></span>
+              <span style="font-family:var(--mono);font-size:9px;color:var(--t3)">Dép. <span style="color:var(--rd)">12 200 $</span></span>
+            </div>
+          </div>
+          <div class="kp" style="border-left:2px solid var(--am)">
+            <div class="kp-l">Loyers / mois</div>
+            <div class="kp-v" style="font-size:22px">3 860 $</div>
+            <div class="kp-s">6/7 reçus</div>
+          </div>
+          <div class="kp" style="border-left:2px solid var(--bl)">
+            <div class="kp-l">Occupation</div>
+            <div class="kp-v" style="font-size:22px;color:var(--bl)">86%</div>
+            <div class="kp-s">1 vacant</div>
+          </div>
+        </div>
+        <div class="aw-chart">
+          <div class="ch-head">
+            <span class="ch-title">Revenus vs Dépenses — 6 mois</span>
+            <div class="ch-leg">
+              <div class="leg"><div class="leg-bar" style="background:var(--gn)"></div>REV</div>
+              <div class="leg"><div class="leg-bar" style="background:var(--rd)"></div>DÉP</div>
+            </div>
+          </div>
+          <div class="ch-bars">
+            <div class="cb"><div class="cb-pair"><div class="bar" style="height:36px;background:rgba(29,185,84,.35)"></div><div class="bar" style="height:14px;background:rgba(229,72,77,.35)"></div></div><div class="cb-lbl" style="color:var(--t4)">J</div></div>
+            <div class="cb"><div class="cb-pair"><div class="bar" style="height:36px;background:rgba(29,185,84,.35)"></div><div class="bar" style="height:22px;background:rgba(229,72,77,.35)"></div></div><div class="cb-lbl" style="color:var(--t4)">F</div></div>
+            <div class="cb"><div class="cb-pair"><div class="bar" style="height:36px;background:rgba(29,185,84,.35)"></div><div class="bar" style="height:12px;background:rgba(229,72,77,.35)"></div></div><div class="cb-lbl" style="color:var(--t4)">M</div></div>
+            <div class="cb"><div class="cb-pair"><div class="bar" style="height:36px;background:rgba(29,185,84,.35)"></div><div class="bar" style="height:18px;background:rgba(229,72,77,.35)"></div></div><div class="cb-lbl" style="color:var(--t4)">A</div></div>
+            <div class="cb"><div class="cb-pair"><div class="bar" style="height:36px;background:rgba(29,185,84,.35)"></div><div class="bar" style="height:14px;background:rgba(229,72,77,.35)"></div></div><div class="cb-lbl" style="color:var(--t4)">M</div></div>
+            <div class="cb"><div class="cb-pair"><div class="bar" style="height:36px;background:var(--gn)"></div><div class="bar" style="height:24px;background:var(--rd)"></div></div><div class="cb-lbl" style="color:var(--t2);font-weight:700">J</div></div>
+          </div>
+        </div>
+        <div class="aw-alert">
+          <div class="al-head"><div class="al-dot"></div>Loyer en retard — 1</div>
+          <div class="al-row">
+            <div><div class="al-name">Aymen G.</div><div class="al-sub">Notre-Dame · 269-A · 4½</div></div>
+            <span class="tag tag-rd">600,00 $</span>
+          </div>
+        </div>
+        <div class="aw-2col" style="margin-top:1px">
+          <div class="aw-panel">
+            <div class="ap-head">Dépenses récentes</div>
+            <div class="ap-row"><div><div class="ar-name">Robinet SDB — Rona</div><div class="ar-sub">Réparation</div></div><span style="font-family:var(--mono);font-size:11px;color:var(--rd);font-weight:600">-44 $</span></div>
+            <div class="ap-row"><div><div class="ar-name">Hydro-Québec</div><div class="ar-sub">Électricité</div></div><span style="font-family:var(--mono);font-size:11px;color:var(--rd);font-weight:600">-287 $</span></div>
+          </div>
+          <div class="aw-panel">
+            <div class="ap-head">Alertes</div>
+            <div class="ap-row"><div><div class="ar-name">Bail App. 3</div><div class="ar-sub">Expire dans 45j</div></div><span class="tag tag-am">J-45</span></div>
+            <div class="ap-row"><div><div class="ar-name">Visite Thetford</div><div class="ar-sub">120 km · 0,70$/km</div></div><span class="tag tag-bl">84 $</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="h-float">
+      <div class="fl-icon">📄</div>
+      <div class="fl-text">
+        <strong>Facture scannée</strong>
+        <span>TPS 22,41 $ · TVQ 44,66 $ · extraits</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr/>
+
+<!-- PAIN SECTION -->
+<section class="pain" id="pain">
+  <div class="pain-inner">
+    <div class="pain-head">
+      <h2>Vous reconnaissez-vous?</h2>
+      <p>Chaque propriétaire qu'on a parlé nous a dit la même chose.</p>
+    </div>
+    <div class="pain-cards">
+      <div class="pain-card">
+        <div class="pc-before">La situation</div>
+        <div class="pc-scene">«&nbsp;C'est quoi mes dépenses d'électricité cette année?&nbsp;»</div>
+        <div class="pc-pain">45 minutes à fouiller dans vos relevés bancaires, vos emails, vos photos de factures. Vous trouvez pas tout. Votre comptable facture l'heure pour faire la même chose.</div>
+        <div class="pc-arrow">Avec ImmoTrack</div>
+        <div class="pc-solve">Chaque facture scannée est classée automatiquement. Votre total annuel par catégorie est visible en 2 secondes.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pc-before">La situation</div>
+        <div class="pc-scene">«&nbsp;Marco a pas payé son loyer depuis le 1er.&nbsp;»</div>
+        <div class="pc-pain">Vous hésitez à texter. Vous attendez. Ça fait awkward. Vous finissez par envoyer un message maladroit le 10 du mois. C'est toujours inconfortable.</div>
+        <div class="pc-arrow">Avec ImmoTrack</div>
+        <div class="pc-solve">Un email professionnel part automatiquement après le 3 du mois. C'est l'app qui relance, pas vous. Zéro friction.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pc-before">La situation</div>
+        <div class="pc-scene">«&nbsp;Je veux vendre mon triplex. L'acheteur demande le NOI.&nbsp;»</div>
+        <div class="pc-pain">Vous passez 3 soirs à compiler les chiffres dans Excel. Vous êtes pas sûr de vos catégories. Votre courtier reçoit un PDF qui a l'air fait à la mitaine.</div>
+        <div class="pc-arrow">Avec ImmoTrack</div>
+        <div class="pc-solve">Un clic génère un rapport de vente professionnel avec NOI calculé, tous les locataires et l'historique complet des travaux.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr/>
+
+<!-- FEATURES -->
+<section class="feats" id="feats">
+  <div class="feats-inner">
+    <div class="s-eye">Ce que ça fait</div>
+    <h2 class="s-h">Tout ce dont vous avez besoin.<br/><em>Rien de superflu.</em></h2>
+    <div class="feats-grid">
+      <div class="feat">
+        <div class="feat-tag">Scanner OCR</div>
+        <div class="feat-h">Photographiez. C'est classé.</div>
+        <div class="feat-p">Claude extrait automatiquement le montant, <strong>la TPS, la TVQ</strong>, la date et la catégorie. Fonctionne avec votre caméra, Genius Scan ou un PDF reçu par courriel.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-tag">Loyers</div>
+        <div class="feat-h">Les rappels partent tout seuls.</div>
+        <div class="feat-p">Après le 3 du mois, <strong>un email professionnel part automatiquement</strong> aux locataires en retard. Vous marquez les loyers reçus en un clic. C'est tout.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-tag">Tenue de livres</div>
+        <div class="feat-h">T776 et TP-128 en 2 clics.</div>
+        <div class="feat-p">État des résultats, NOI, flux de trésorerie, <strong>déductions fiscales estimées</strong>. Un PDF institutionnel prêt pour votre comptable. Fini les soirées à compiler.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-tag">Rapport de vente</div>
+        <div class="feat-h">Vendez avec des vrais chiffres.</div>
+        <div class="feat-p">Un clic génère un <strong>rapport professionnel avec le NOI calculé</strong>, tous les locataires, l'historique complet des réparations. Vos acheteurs sont impressionnés.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-tag">Tableau de bord</div>
+        <div class="feat-h">Vue instantanée de tout.</div>
+        <div class="feat-p"><strong>NOI annuel en gros</strong>, graphique 6 mois revenus vs dépenses, alertes loyers en retard, baux expirants. Données Banque du Canada en temps réel.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-tag">Multi-utilisateurs</div>
+        <div class="feat-h">Partagez avec votre associé.</div>
+        <div class="feat-p">Un lien d'invitation et <strong>votre conjoint ou partenaire a accès complet</strong> en temps réel. Toutes les données synchronisées sur tous les appareils.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr/>
+
+<!-- QUEBEC -->
+<section class="qc">
+  <div class="qc-inner">
+    <div class="qc-left">
+      <div class="s-eye">Fait pour le Québec</div>
+      <h2>Pas un logiciel américain traduit.</h2>
+      <p style="margin-top:14px">ImmoTrack est construit par un investisseur immobilier québécois. Chaque détail est adapté à votre réalité.</p>
+    </div>
+    <ul class="qc-list">
+      <li class="qc-item">
+        <span class="qci-arrow">→</span>
+        <div><div class="qci-h">TPS & TVQ lues automatiquement</div><div class="qci-p">Le scanner sépare la TPS et la TVQ à chaque facture. Vos crédits de taxe sur les intrants (CTI) sont calculés sans effort.</div></div>
+      </li>
+      <li class="qc-item">
+        <span class="qci-arrow">→</span>
+        <div><div class="qci-h">Formulaires T776 et TP-128</div><div class="qci-p">Vos dépenses sont organisées selon les lignes fiscales fédérales et provinciales. Votre comptable gagne des heures, vous aussi.</div></div>
+      </li>
+      <li class="qc-item">
+        <span class="qci-arrow">→</span>
+        <div><div class="qci-h">Baux 12 mois automatiques</div><div class="qci-p">Entrez la date de début, la fin se calcule selon la norme québécoise. Alerte automatique 90 jours avant l'expiration.</div></div>
+      </li>
+      <li class="qc-item">
+        <span class="qci-arrow">→</span>
+        <div><div class="qci-h">Carnet d'entretien légalement requis depuis 2025</div><div class="qci-p">Les copropriétés divises doivent tenir un carnet d'entretien. ImmoTrack le génère automatiquement à partir de vos factures.</div></div>
+      </li>
+      <li class="qc-item">
+        <span class="qci-arrow">→</span>
+        <div><div class="qci-h">Déplacements déductibles — 0,70$/km CRA 2024</div><div class="qci-p">Chaque voyage est converti en déduction fiscale. Apparaît directement dans vos états financiers et votre T776.</div></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<hr/>
+
+<!-- NUMBERS -->
+<div style="padding:0 40px;max-width:1280px;margin:0 auto">
+  <div class="nums" style="margin:0">
+    <div class="num"><div class="num-v">600K</div><div class="num-l">Propriétaires-bailleurs au Québec</div></div>
+    <div class="num"><div class="num-v">3h</div><div class="num-l">Sauvées par mois en moyenne</div></div>
+    <div class="num"><div class="num-v">25$</div><div class="num-l">Par mois · Annulable en tout temps</div></div>
+    <div class="num"><div class="num-v">14j</div><div class="num-l">D'essai gratuit · Aucune carte requise</div></div>
+  </div>
+</div>
+
+<hr style="margin-top:0"/>
+
+<!-- PRICING -->
+<section class="pricing" id="prix">
+  <div class="pricing-inner">
+    <div class="s-eye">Tarifs</div>
+    <h2 class="s-h" style="margin-bottom:40px">Simple.<br/><em>Pas de surprise.</em></h2>
+    <div class="pricing-grid">
+      <div class="pc">
+        <div class="pc-plan">Essai gratuit</div>
+        <div class="pc-price">0<span class="pc-per"> $</span></div>
+        <div class="pc-note">14 jours · Aucune carte requise</div>
+        <ul class="pc-feats">
+          <li class="y">Jusqu'à 2 immeubles</li>
+          <li class="y">Scanner de factures OCR</li>
+          <li class="y">Suivi des loyers</li>
+          <li class="y">Journal de déplacements</li>
+          <li class="n">Rappels automatiques</li>
+          <li class="n">États financiers PDF</li>
+          <li class="n">Rapport de vente NOI</li>
+          <li class="n">Multi-utilisateurs</li>
+        </ul>
+        <a href="https://immotrack-pearl.vercel.app" class="pc-btn-ln">Commencer gratuitement</a>
+      </div>
+      <div class="pc hot">
+        <div class="hot-tag">Le plus populaire</div>
+        <div class="pc-plan" style="margin-top:18px">Pro</div>
+        <div class="pc-price">25<span class="pc-per"> $/mois</span></div>
+        <div class="pc-note">Annulable en tout temps</div>
+        <ul class="pc-feats">
+          <li class="y">Immeubles illimités</li>
+          <li class="y">Scanner OCR illimité</li>
+          <li class="y">Suivi des loyers</li>
+          <li class="y">Déplacements déductibles</li>
+          <li class="y">Rappels automatiques</li>
+          <li class="y">États financiers T776</li>
+          <li class="y">Rapport de vente NOI</li>
+          <li class="y">Multi-utilisateurs</li>
+          <li class="y">Support prioritaire</li>
+        </ul>
+        <a href="https://immotrack-pearl.vercel.app" class="pc-btn-am">S'abonner — 25$/mois</a>
+      </div>
+      <div class="pc">
+        <div class="pc-plan">Entreprise</div>
+        <div class="pc-price" style="font-size:30px;margin-top:10px">Sur mesure</div>
+        <div class="pc-note">Pour les gestionnaires · 10+ immeubles</div>
+        <ul class="pc-feats">
+          <li class="y">Tout du plan Pro</li>
+          <li class="y">Utilisateurs illimités</li>
+          <li class="y">Intégration comptable</li>
+          <li class="y">Formation personnalisée</li>
+          <li class="y">Support dédié</li>
+        </ul>
+        <a href="mailto:immotrack@gmail.com" class="pc-btn-ln">Nous contacter</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final">
+  <h2>Essayez-le ce soir.<br/><span>Pour vrai.</span></h2>
+  <p>14 jours gratuits. Aucune carte. Dans 20 minutes,<br/>votre portfolio est configuré et vous voyez déjà la différence.</p>
+  <a href="https://immotrack-pearl.vercel.app" class="btn-am" style="font-size:14px;padding:16px 44px">Commencer gratuitement</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="n-logo">
+    <div class="n-mark">IT</div>
+    <span class="n-name" style="font-size:11px;color:var(--t3)">ImmoTrack</span>
+  </div>
+  <span class="f-copy">© 2026 ImmoTrack · Conçu au Québec</span>
+  <div class="f-links">
+    <a href="https://immotrack-pearl.vercel.app">Application</a>
+    <a href="mailto:immotrack@gmail.com">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
