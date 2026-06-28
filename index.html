@@ -201,20 +201,41 @@ footer{padding:26px 40px;border-top:1px solid var(--br);display:flex;justify-con
 .f-links a:hover{color:var(--t1)}
 
 /* MOBILE */
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr;gap:32px;padding:60px 20px;min-height:auto}
-  .phone-wrap{display:flex;justify-content:center;margin-top:0}
-  .phone{width:220px}
-  .phone-badge{right:-8px;top:50px;min-width:150px;padding:8px 10px}
-  .pb-t strong{font-size:10px}
-  .pb-t span{font-size:9px}
-  .problem,.feats,.qc,.pricing{padding:60px 20px}
-  .problem-grid,.feats-grid,.pricing-grid{grid-template-columns:1fr}
-  .qc-inner{grid-template-columns:1fr;gap:40px}
-  .stats-row{grid-template-columns:1fr 1fr}
+@media(max-width:768px){
+  body{overflow-x:hidden}
+  nav{padding:0 16px}
   .n-links{display:none}
-  footer{padding:20px}
-  .final{padding:60px 20px}
+  .n-cta{padding:0 14px;font-size:10px}
+  .hero{grid-template-columns:1fr;gap:40px;padding:40px 16px 48px;min-height:auto}
+  .phone-wrap{display:flex !important;justify-content:center;margin-top:0}
+  .phone{width:220px}
+  .h-eye{font-size:9px}
+  .h-title{font-size:32px;letter-spacing:-.02em;line-height:1.1}
+  .h-body{font-size:14px;max-width:100%;margin-bottom:24px}
+  .h-actions{flex-direction:column;gap:8px}
+  .btn-am,.btn-ln{width:100%;text-align:center;padding:13px 16px;font-size:12px;display:block}
+  .h-note{flex-wrap:wrap;gap:10px}
+  .h-note span{font-size:12px}
+  .phone-badge{display:none}
+  .problem,.feats,.qc,.pricing{padding:40px 16px}
+  .problem-grid,.feats-grid,.pricing-grid{grid-template-columns:1fr}
+  .prob-card,.feat,.pc{padding:20px 16px}
+  .prob-q{font-size:14px}
+  .prob-desc,.prob-sol{font-size:12px}
+  .qc-inner{grid-template-columns:1fr;gap:28px}
+  .qc-left h2{font-size:26px}
+  .qci-h{font-size:13px}
+  .qci-p{font-size:12px}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .stat{padding:18px 14px}
+  .stat-v{font-size:28px}
+  .pc-price{font-size:36px}
+  footer{padding:16px;flex-direction:column;gap:8px;align-items:flex-start}
+  .final{padding:48px 16px}
+  .final h2{font-size:30px}
+  .s-h{font-size:24px;margin-bottom:24px}
+  .feat-h{font-size:14px}
+  .feat-p{font-size:12px}
 }
 </style>
 </head>
