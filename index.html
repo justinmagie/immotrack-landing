@@ -4,12 +4,12 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>PlexTrack — Gestion immobilière professionnelle</title>
-<meta name="description" content="Tenue de livres T776, scanner intelligent, rappels automatiques, rapport NOI. Conçu pour les propriétaires québécois. 14,99$/mois."/>
+<meta name="description" content="Tenue de livres T776, scanner intelligent, rappels automatiques, rapport NOI. Conçu pour les propriétaires québécois. 19,99$/mois."/>
 <!-- Open Graph — aperçu lors du partage (Messenger, Facebook, LinkedIn) -->
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://plextrack.ca"/>
 <meta property="og:title" content="PlexTrack — Gestion immobilière professionnelle"/>
-<meta property="og:description" content="Scanner de factures TPS/TVQ, tenue de livres T776, rappels de loyers automatiques. Conçu pour les propriétaires québécois. 14,99$/mois — 14 jours gratuits."/>
+<meta property="og:description" content="Scanner de factures TPS/TVQ, tenue de livres T776, rappels de loyers automatiques. Conçu pour les propriétaires québécois. 19,99$/mois — 14 jours gratuits."/>
 <meta property="og:image" content="https://plextrack.ca/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -17,7 +17,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="PlexTrack — Gestion immobilière professionnelle"/>
-<meta name="twitter:description" content="Scanner TPS/TVQ, tenue de livres T776, rappels de loyers. 14,99$/mois — 14 jours gratuits."/>
+<meta name="twitter:description" content="Scanner TPS/TVQ, tenue de livres T776, rappels de loyers. 19,99$/mois — 14 jours gratuits."/>
 <meta name="twitter:image" content="https://plextrack.ca/og-image.png"/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
@@ -254,6 +254,52 @@ footer{padding:26px 40px;border-top:1px solid var(--br);display:flex;justify-con
   .feat-h{font-size:14px}
   .feat-p{font-size:12px}
 }
+
+/* ── WORKSPACE DESKTOP ── */
+.wkspc{padding:80px 24px;background:var(--s1);border-top:1px solid var(--br);border-bottom:1px solid var(--br)}
+.wkspc-inner{max-width:940px;margin:0 auto;text-align:center}
+.wkspc-sub{color:var(--t3);font-size:14px;max-width:520px;margin:14px auto 44px;line-height:1.7}
+.brw{background:#0A0A0A;border:1px solid #242424;border-radius:10px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.65);text-align:left}
+.brw-bar{display:flex;align-items:center;gap:7px;background:#111;border-bottom:1px solid #1E1E1E;padding:10px 14px}
+.brw-d{width:10px;height:10px;border-radius:50%}
+.brw-d.r{background:#FF5F57}.brw-d.y{background:#FEBC2E}.brw-d.g{background:#28C840}
+.brw-url{margin-left:12px;background:#0A0A0A;border:1px solid #1E1E1E;border-radius:5px;padding:4px 14px;font-family:var(--mono);font-size:10px;color:var(--t3)}
+.brw-body{display:flex}
+.brw-side{width:150px;flex-shrink:0;border-right:1px solid var(--br);padding:14px 0;background:#070707}
+.brw-nav{font-size:11px;color:var(--t3);padding:8px 18px;border-left:2px solid transparent}
+.brw-nav.on{color:var(--am);border-left-color:var(--am);background:rgba(224,155,45,.05)}
+.brw-main{flex:1;padding:14px;min-width:0}
+.brw-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:8px;margin:10px 0}
+.brw-kcol{display:flex;flex-direction:column;gap:8px}
+.brw-kcol .msc-kpi{flex:1}
+.msc-kpi.rd2{border-left-color:var(--rd)}
+.brw-alert{display:flex;align-items:center;gap:12px;background:var(--s2);border-left:2px solid var(--rd);padding:9px 12px;margin-top:10px;font-size:11px;color:var(--t2)}
+.brw-alert-t{font-family:var(--mono);font-size:8.5px;color:var(--rd);letter-spacing:.06em}
+.brw-alert-v{margin-left:auto;font-family:var(--mono);font-weight:600;color:var(--rd)}
+.msc-ticker{font-family:var(--mono);font-size:9px;color:var(--t2);background:#070707;border:1px solid #111;padding:6px 9px}
+.msc-noi{background:var(--s2);border-left:2px solid var(--gn);padding:10px 12px}
+.msc-noi-l{font-family:var(--mono);font-size:8px;color:var(--t3);letter-spacing:.1em}
+.msc-noi-v{font-family:var(--mono);font-size:26px;font-weight:600;color:var(--gn);margin:2px 0}
+.msc-noi-s{font-family:var(--mono);font-size:8px;color:var(--t3)}
+.msc-kpi{background:var(--s2);border-left:2px solid var(--am);padding:8px 10px}
+.msc-kpi.b{border-left-color:var(--bl)}
+.msc-kpi.g{border-left-color:var(--gn)}
+.msc-kpi span{display:block;font-family:var(--mono);font-size:7px;color:var(--t3);letter-spacing:.08em}
+.msc-kpi strong{font-family:var(--mono);font-size:14px;color:var(--t1)}
+.msc-chart{background:var(--s2);padding:9px 12px}
+.msc-chart-t{font-family:var(--mono);font-size:7px;color:var(--t3);letter-spacing:.08em;margin-bottom:8px}
+.msc-bars{display:flex;gap:16px;align-items:flex-end;height:46px}
+.mb{display:flex;gap:2px;align-items:flex-end}
+.mb i{display:block;width:13px;background:#1D5A32}
+.mb i.r{background:#6E282A}
+.mb.hl i{background:var(--gn)}
+.mb.hl i.r{background:var(--rd)}
+@media(max-width:680px){
+  .wkspc{padding:56px 16px}
+  .brw-side{display:none}
+  .brw-grid{grid-template-columns:1fr 1fr}
+  .msc-noi{grid-column:1/-1}
+}}
 </style>
 </head>
 <body>
@@ -282,7 +328,7 @@ footer{padding:26px 40px;border-top:1px solid var(--br);display:flex;justify-con
       Gérez pro.
     </h1>
     <p class="h-body">
-      Scanner de factures avec <strong>extraction TPS/TVQ automatique</strong>, tenue de livres <strong>format T776</strong>, rappels de loyers, rapport de vente avec NOI. Tout au même endroit, pour 14,99$/mois.
+      Scanner de factures avec <strong>extraction TPS/TVQ automatique</strong>, tenue de livres <strong>format T776</strong>, rappels de loyers, rapport de vente avec NOI. Tout au même endroit, pour 19,99$/mois.
     </p>
     <div class="h-actions">
       <a href="https://immotrack-pearl.vercel.app" class="btn-am">Commencer — 14 jours gratuits</a>
@@ -290,7 +336,7 @@ footer{padding:26px 40px;border-top:1px solid var(--br);display:flex;justify-con
     </div>
     <div class="h-note">
       <span>Aucune carte requise</span>
-      <span>14,99$/mois · Portfolios de 1 à 5 immeubles</span>
+      <span>19,99$/mois · Portfolios de 1 à 5 immeubles</span>
       <span>Annulable en tout temps</span>
     </div>
   </div>
@@ -368,6 +414,68 @@ footer{padding:26px 40px;border-top:1px solid var(--br);display:flex;justify-con
     </div>
   </div>
 </div>
+
+<hr/>
+
+
+<!-- DESKTOP WORKSPACE -->
+<section class="wkspc">
+  <div class="wkspc-inner">
+    <div class="s-eye">Pensé pour les vrais gestionnaires</div>
+    <h2 class="s-h">Aussi puissant sur grand écran</h2>
+    <p class="wkspc-sub">Recherche instantanée Ctrl+K, tri des colonnes, exports comptables — l'expérience complète d'un outil professionnel.</p>
+
+    <div class="brw">
+      <div class="brw-bar">
+        <span class="brw-d r"></span><span class="brw-d y"></span><span class="brw-d g"></span>
+        <span class="brw-url">app.plextrack.ca</span>
+      </div>
+      <div class="brw-body">
+        <div class="brw-side">
+          <div class="brw-nav on">Aperçu</div>
+          <div class="brw-nav">Immeubles</div>
+          <div class="brw-nav">Loyers</div>
+          <div class="brw-nav">Dépenses</div>
+          <div class="brw-nav">Comptabilité</div>
+          <div class="brw-nav">Rapports</div>
+        </div>
+        <div class="brw-main">
+          <div class="msc-ticker">BdC 2.25% &nbsp;·&nbsp; Taux préf. 4.45% &nbsp;·&nbsp; GoC3 2.71% &nbsp;·&nbsp; IPC 2.8% &nbsp;·&nbsp; <span style="color:var(--am)">BdC 07-30 · J-20</span></div>
+          <div class="brw-grid">
+            <div class="msc-noi">
+              <div class="msc-noi-l">NOI 2026</div>
+              <div class="msc-noi-v">34 120 $</div>
+              <div class="msc-noi-s">Rev. 46 320 $ &nbsp; Dép. 12 200 $</div>
+            </div>
+            <div class="brw-kcol">
+              <div class="msc-kpi"><span>LOYERS/MOIS</span><strong>3 860 $</strong></div>
+              <div class="msc-kpi b"><span>OCCUPATION</span><strong style="color:var(--bl)">100%</strong></div>
+            </div>
+            <div class="brw-kcol">
+              <div class="msc-kpi g"><span>IMMEUBLES</span><strong>3</strong></div>
+              <div class="msc-kpi rd2"><span>EN RETARD</span><strong style="color:var(--rd)">1</strong></div>
+            </div>
+          </div>
+          <div class="msc-chart">
+            <div class="msc-chart-t">REVENUS VS DÉPENSES — 6 MOIS</div>
+            <div class="msc-bars">
+              <div class="mb"><i style="height:40px"></i><i class="r" style="height:16px"></i></div>
+              <div class="mb"><i style="height:40px"></i><i class="r" style="height:24px"></i></div>
+              <div class="mb"><i style="height:40px"></i><i class="r" style="height:13px"></i></div>
+              <div class="mb"><i style="height:40px"></i><i class="r" style="height:20px"></i></div>
+              <div class="mb"><i style="height:40px"></i><i class="r" style="height:15px"></i></div>
+              <div class="mb hl"><i style="height:40px"></i><i class="r" style="height:26px"></i></div>
+            </div>
+          </div>
+          <div class="brw-alert">
+            <span class="brw-alert-t">● LOYER EN RETARD</span>
+            <span>A. Tremblay — 269 · 4½</span>
+            <span class="brw-alert-v">600 $</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 <hr/>
 
@@ -486,7 +594,7 @@ footer{padding:26px 40px;border-top:1px solid var(--br);display:flex;justify-con
   <div class="stats-row">
     <div class="stat"><div class="stat-v" style="font-size:28px;line-height:1.2">Fini les<br/>casse-têtes.</div><div class="stat-l" style="margin-top:10px">Pour les propriétaires de petits plex québécois</div></div>
     <div class="stat"><div class="stat-v">4h30</div><div class="stat-l">Économisées par mois en moyenne</div></div>
-    <div class="stat"><div class="stat-v">14,99$</div><div class="stat-l">Par mois · Annulable en tout temps</div></div>
+    <div class="stat"><div class="stat-v">19,99$</div><div class="stat-l">Par mois · Annulable en tout temps</div></div>
     <div class="stat"><div class="stat-v">14 <span style="font-size:22px;letter-spacing:-.02em">jours</span></div><div class="stat-l">d'essai gratuit · Aucune carte requise</div></div>
   </div>
 </div>
@@ -518,7 +626,7 @@ footer{padding:26px 40px;border-top:1px solid var(--br);display:flex;justify-con
       <div class="pc hot">
         <div class="hot-tag">Recommandé</div>
         <div class="pc-plan" style="margin-top:18px">Pro</div>
-        <div class="pc-price">14,99<span class="pc-per" style="font-size:18px"> $/mois</span></div>
+        <div class="pc-price">19,99<span class="pc-per" style="font-size:18px"> $/mois</span></div>
         <div class="pc-note">Pour portfolios de 1 à 5 immeubles · Annulable en tout temps</div>
         <ul class="pc-feats">
           <li class="y">Jusqu'à 5 immeubles</li>
@@ -531,7 +639,7 @@ footer{padding:26px 40px;border-top:1px solid var(--br);display:flex;justify-con
           <li class="y">Multi-utilisateurs</li>
           <li class="y">Support prioritaire</li>
         </ul>
-        <a href="https://buy.stripe.com/cNifZja4w4CsaBx3sB1gs00" class="pc-btn-am">S'abonner — 14,99$/mois</a>
+        <a href="https://buy.stripe.com/cNifZja4w4CsaBx3sB1gs00" class="pc-btn-am">S'abonner — 19,99$/mois</a>
       </div>
       <div class="pc">
         <div class="pc-plan">Entreprise</div>
