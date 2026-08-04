@@ -53,7 +53,7 @@ nav{position:sticky;top:0;z-index:100;height:52px;display:flex;align-items:stret
 .n-cta:hover{background:var(--am3)}
 
 /* HERO */
-.hero{min-height:calc(100vh - 52px);display:grid;grid-template-columns:1fr 1fr;align-items:center;max-width:1200px;margin:0 auto;padding:80px 40px;gap:80px}
+.hero{min-height:auto;display:grid;grid-template-columns:1fr 1fr;align-items:center;max-width:1200px;margin:0 auto;padding:64px 40px 72px;gap:64px}
 .h-eye{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);margin-bottom:24px;display:flex;align-items:center;gap:10px}
 .h-eye::before{content:'';width:20px;height:1px;background:var(--am);flex-shrink:0}
 .h-title{font-size:clamp(36px,5vw,60px);font-weight:800;line-height:1.05;letter-spacing:-.04em;margin-bottom:24px}
@@ -128,7 +128,7 @@ nav{position:sticky;top:0;z-index:100;height:52px;display:flex;align-items:stret
 .ps-row-name{font-size:9px;font-weight:500}
 .ps-row-sub{font-size:7px;color:var(--t3);font-family:var(--mono)}
 /* float badge */
-.phone-badge{position:absolute;right:-20px;top:80px;background:var(--s2);border:1px solid var(--br2);padding:10px 13px;display:flex;align-items:center;gap:8px;box-shadow:0 8px 32px rgba(0,0,0,.5);animation:float 3s ease-in-out infinite;min-width:180px}
+.phone-badge{position:absolute;right:-28px;bottom:60px;background:var(--s2);border:1px solid var(--br2);padding:10px 13px;display:flex;align-items:center;gap:8px;box-shadow:0 8px 32px rgba(0,0,0,.5);animation:float 3s ease-in-out infinite;min-width:180px}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 .pb-icon{font-size:16px}
 .pb-t strong{display:block;font-size:11px;font-weight:600;margin-bottom:2px}
@@ -332,7 +332,7 @@ footer{padding:26px 40px;border-top:1px solid var(--br);display:flex;justify-con
       Gérez pro.
     </h1>
     <p class="h-body">
-      Scanner de factures avec <strong>extraction TPS/TVQ automatique</strong>, tenue de livres <strong>format T776</strong>, rappels de loyers, rapport de vente avec NOI. Tout au même endroit, pour 19,99$/mois.
+      Scanner de factures avec <strong>extraction TPS/TVQ automatique</strong>, tenue de livres <strong>format T776</strong>, rappels de loyers, rapport de vente avec NOI. Tout au même endroit, pour 19,99$/mois + tx.
     </p>
     <div class="h-actions">
       <a href="https://immotrack-pearl.vercel.app" class="btn-am">Commencer — 14 jours gratuits</a>
@@ -340,7 +340,7 @@ footer{padding:26px 40px;border-top:1px solid var(--br);display:flex;justify-con
     </div>
     <div class="h-note">
       <span>Aucune carte requise</span>
-      <span>19,99$/mois · Portfolios de 1 à 5 immeubles</span>
+      <span>19,99$/mois + tx · Portfolios de 1 à 5 immeubles</span>
       <span>Annulable en tout temps</span>
     </div>
   </div>
@@ -356,8 +356,8 @@ footer{padding:26px 40px;border-top:1px solid var(--br);display:flex;justify-con
         </div>
         <div class="ps-ticker">
           <div class="pt"><span class="pt-l">BdC</span><span class="pt-v">2.25%</span></div>
-          <div class="pt"><span class="pt-l">CMB</span><span class="pt-v">4.45%</span></div>
-          <div class="pt"><span class="pt-l">07-30</span><span class="pt-v" style="color:var(--am)">J-33</span></div>
+          <div class="pt"><span class="pt-l">GoC3</span><span class="pt-v">2.71%</span></div>
+          <div class="pt"><span class="pt-l">07-30</span><span class="pt-v" style="color:var(--am)">J-20</span></div>
         </div>
         <div class="ps-body">
           <div class="ps-noi">
@@ -375,7 +375,7 @@ footer{padding:26px 40px;border-top:1px solid var(--br);display:flex;justify-con
             </div>
             <div class="ps-kpi" style="border-left-color:var(--bl)">
               <div class="ps-kpi-l">Occupation</div>
-              <div class="ps-kpi-v" style="color:var(--bl)">86%</div>
+              <div class="ps-kpi-v" style="color:var(--bl)">100%</div>
             </div>
           </div>
           <div class="ps-chart">
@@ -392,7 +392,7 @@ footer{padding:26px 40px;border-top:1px solid var(--br);display:flex;justify-con
           <div class="ps-alert">
             <div class="ps-alert-h"><div class="ps-a-dot"></div>Loyer en retard — 1</div>
             <div class="ps-alert-row">
-              <div><div class="ps-alert-name">A. Glid</div><div class="ps-alert-sub">269-A · 4½</div></div>
+              <div><div class="ps-alert-name">A. Tremblay</div><div class="ps-alert-sub">269-A · 4½</div></div>
               <span class="ps-tag ps-tag-rd">950 $</span>
             </div>
           </div>
@@ -501,7 +501,7 @@ footer{padding:26px 40px;border-top:1px solid var(--br);display:flex;justify-con
         <div class="prob-q">Gérer les loyers en retard sans friction.</div>
         <div class="prob-desc">Relancer un locataire manuellement est chronophage et inconfortable. Le suivi devient désorganisé quand le volume augmente.</div>
         <div class="prob-after">La solution</div>
-        <div class="prob-sol">Un courriel de rappel professionnel est envoyé automatiquement après le 3 du mois. Le suivi se fait sans intervention de votre part.</div>
+        <div class="prob-sol">Un courriel de rappel professionnel part automatiquement 3 jours après la date d'échéance du bail. Le suivi se fait sans intervention de votre part.</div>
       </div>
       <div class="prob-card">
         <div class="prob-before">Le défi</div>
@@ -530,7 +530,7 @@ footer{padding:26px 40px;border-top:1px solid var(--br);display:flex;justify-con
       <div class="feat">
         <div class="feat-tag">Loyers</div>
         <div class="feat-h">Rappels automatiques chaque mois.</div>
-        <div class="feat-p">Les locataires en retard reçoivent automatiquement un courriel après le 3 du mois. <strong>Zéro intervention requise.</strong> Vous marquez les loyers reçus en un clic.</div>
+        <div class="feat-p">Les locataires en retard reçoivent un courriel <strong>3 jours après leur date d'échéance</strong>, calculée selon leur bail. Zéro intervention requise.</div>
       </div>
       <div class="feat">
         <div class="feat-tag">Tenue de livres</div>
@@ -598,7 +598,7 @@ footer{padding:26px 40px;border-top:1px solid var(--br);display:flex;justify-con
   <div class="stats-row">
     <div class="stat"><div class="stat-v" style="font-size:28px;line-height:1.2">Fini les<br/>casse-têtes.</div><div class="stat-l" style="margin-top:10px">Pour les propriétaires de petits plex québécois</div></div>
     <div class="stat"><div class="stat-v">4h</div><div class="stat-l">Économisées par mois en moyenne</div></div>
-    <div class="stat"><div class="stat-v">19,99$</div><div class="stat-l">Par mois · Annulable en tout temps</div></div>
+    <div class="stat"><div class="stat-v">19,99$</div><div class="stat-l">+ tx par mois · Annulable en tout temps</div></div>
     <div class="stat"><div class="stat-v">14 <span style="font-size:22px;letter-spacing:-.02em">jours</span></div><div class="stat-l">d'essai gratuit · Aucune carte requise</div></div>
   </div>
 </div>
@@ -630,7 +630,7 @@ footer{padding:26px 40px;border-top:1px solid var(--br);display:flex;justify-con
       <div class="pc hot">
         <div class="hot-tag">Recommandé</div>
         <div class="pc-plan" style="margin-top:18px">Pro</div>
-        <div class="pc-price">19,99<span class="pc-per" style="font-size:18px"> $/mois</span></div>
+        <div class="pc-price">19,99<span class="pc-per" style="font-size:18px"> $/mois + tx</span></div>
         <div class="pc-note">Pour portfolios de 1 à 5 immeubles · Annulable en tout temps</div>
         <ul class="pc-feats">
           <li class="y">Jusqu'à 5 immeubles</li>
@@ -643,7 +643,7 @@ footer{padding:26px 40px;border-top:1px solid var(--br);display:flex;justify-con
           <li class="y">Multi-utilisateurs</li>
           <li class="y">Support prioritaire</li>
         </ul>
-        <a href="https://buy.stripe.com/8x28wR6Skgla4d91kt1gs02" class="pc-btn-am">S'abonner — 19,99$/mois</a>
+        <a href="https://buy.stripe.com/8x28wR6Skgla4d91kt1gs02" class="pc-btn-am">S'abonner — 19,99$/mois + tx</a>
       </div>
       <div class="pc">
         <div class="pc-plan">Entreprise</div>
